@@ -1,0 +1,15 @@
+{
+  "name": "multi-region-app",
+  "version": "1.0.0",
+  "description": "Simple Express.js app for AWS App Runner",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["express", "aws", "app-runner"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
