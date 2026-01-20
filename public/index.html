@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-Region Latency Test</title>
+</head>
+<body>
+    <h1>Multi-Region Latency Tester</h1>
+    <div id="results">Measuring latency...</div>
+
+    <script>
+        const regions = [
+            { name: 'US East (N. Virginia)', url: 'https://mmv9awr6yg.us-east-1.awsapprunner.com/' },
+            { name: 'US West (Oregon)', url: 'https://jnwxuhrmir.us-west-2.awsapprunner.com/' }
+        ];
+
+        async function measureLatency(url) {
+            const start = performance.now();
+            try {
+                await fetch(url);
+                const end = performance.now();
+                return Math.round(end - start);
+            } catch (error) {
+                return 'Error';
+            }
+        }
+
+        async function testAllRegions() {
+            const resultsDiv = document.getElementById('results');
+            let output = '';
+
+            for (const region of regions) {
+                const latency = await measureLatency(region.url);
+                output += `${region.name}: ${latency} ms\n`;
+            }
+
+            resultsDiv.innerText = output;
+        }
+
+        testAllRegions();
+    </script>
+</body>
+</html>
